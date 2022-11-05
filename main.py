@@ -36,10 +36,10 @@ while game_is_on:
 
     targetPaddle= paddle2 if playing==1 else paddle1
     for i, sq in enumerate(targetPaddle.paddle):
-        if ball.distance(sq)<=20:
-            ball.send_back(i)
+        if ball.distance(sq)<=22:
+            hit_position = targetPaddle.get_center_ycor()-ball.ycor()
+            ball.send_back(hit_position)
             playing = 2 if playing==1 else 1
-            print("Playing : ",playing)
     
     if abs(ball.ycor())>BOARD_DIMENSIONS[1]/2-10:
         ball.hit_the_wall()

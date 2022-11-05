@@ -1,6 +1,9 @@
 from turtle import Turtle
 import random
 
+BOUNCE_FACTOR=1
+
+
 class Ball(Turtle):
     def __init__(self) -> None:
         super().__init__()
@@ -21,18 +24,17 @@ class Ball(Turtle):
     def move(self):
         self.forward(self.speed)
 
-    def send_back(self,i):
-        # self.left(180)
+    def send_back(self,side_distance):
+        bounce = BOUNCE_FACTOR*side_distance
         attack_heading=self.heading()
-        print( "heading : ",attack_heading )
         if attack_heading<=90:
-            self.right(attack_heading*2)
+            self.right(attack_heading*2 + bounce )
         elif attack_heading>270:
-            self.left( (360-attack_heading)*2 )
+            self.left( (360-attack_heading)*2 + bounce )
         elif attack_heading>90 and attack_heading<=180:
-            self.left( (180-attack_heading)*2 )
+            self.left( (180-attack_heading)*2 - bounce )
         elif attack_heading>180 :
-            self.right( (attack_heading-180)*2 )
+            self.right( (attack_heading-180)*2 - bounce )
         self.left(180)
 
     def hit_the_wall(self):
@@ -49,3 +51,5 @@ class Ball(Turtle):
 
     def speed_up(self):
         self.speed+=1
+
+    

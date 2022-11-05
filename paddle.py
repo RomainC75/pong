@@ -41,12 +41,11 @@ class Paddle():
 
     def down(self):
         y_min=-self.board_dimensions[1]/2
-        print("down")
-        
         if self.paddle[-1].ycor() > y_min+20:
-            print('moove')
             for sq in self.paddle:
                 sq.setheading(270)
                 sq.forward(20)
 
 
+    def get_center_ycor(self):
+        return self.paddle[2].ycor()
