@@ -11,13 +11,16 @@ screen.bgcolor("black")
 screen.title("Snake Game")
 screen.tracer(0)
 
-paddle=Paddle(BOARD_DIMENSIONS, 1)
+paddle1=Paddle(BOARD_DIMENSIONS, 1)
+paddle2=Paddle(BOARD_DIMENSIONS, 2)
+
 net = Net(BOARD_DIMENSIONS)
 
 screen.listen() 
-screen.onkey(key="Up", fun=paddle.up)
-screen.onkey(key="Down", fun=paddle.down)
-
+screen.onkey(key="Up", fun=paddle2.up)
+screen.onkey(key="Down", fun=paddle2.down)
+screen.onkey(key="z", fun=paddle1.up)
+screen.onkey(key="s", fun=paddle1.down)
 
 game_is_on=True
 

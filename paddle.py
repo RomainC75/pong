@@ -40,8 +40,11 @@ class Paddle():
                 sq.forward(20)
 
     def down(self):
-        y_max=-self.board_dimensions[1]/2
-        if self.paddle[0].ycor() < -y_max+20:
+        y_min=-self.board_dimensions[1]/2
+        print("down")
+        
+        if self.paddle[-1].ycor() > y_min+20:
+            print('moove')
             for sq in self.paddle:
                 sq.setheading(270)
                 sq.forward(20)
