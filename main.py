@@ -33,22 +33,24 @@ while game_is_on:
     screen.update()
     time.sleep(0.01)
     ball.move()
-
-    targetPaddle= paddle2 if playing==1 else paddle1
-    
-    if ball.xcor() < -BOARD_DIMENSIONS[0]/2+60 and ball.distance(paddle1.paddle)<50:
-        ball.send_back(0)
-    if ball.xcor() > BOARD_DIMENSIONS[0]/2-60 and ball.distance(paddle2.paddle)<50:
-        ball.send_back(0)
+    print("heading "  , ball.heading())
+    if ball.xcor() < -BOARD_DIMENSIONS[0]/2+60 and ball.distance(paddle1.paddle)<50 and ball.heading()>90 and ball.heading()<270:
+        ball.send_back(paddle1.paddle.ycor()-ball.ycor())
+    if ball.xcor() > BOARD_DIMENSIONS[0]/2-60 and ball.distance(paddle2.paddle)<50 and (ball.heading()<90 or ball.heading()>270):
+        ball.send_back(paddle2.paddle.ycor()-ball.ycor())
 
     print(paddle1.paddle.position())
 
     if abs(ball.ycor())>BOARD_DIMENSIONS[1]/2-10:
         ball.hit_the_wall()
 
-    if abs(ball.xcor())>BOARD_DIMENSIONS[0]/2:
-        score_board.score_up(playing)
+    if ball.xcor()>BOARD_DIMENSIONS[0]/2:
+        score_board.score_up(1)
         time.sleep(1)
-        ball.first_launch(playing)
+        ball.first_launch(1)
+    if ball.xcor()<-BOARD_DIMENSIONS[0]/2:
+        score_board.score_up(2)
+        time.sleep(1)
+        ball.first_launch(2)
 
 screen.exitonclick()

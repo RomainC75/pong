@@ -1,7 +1,8 @@
 from turtle import Turtle
 import random
 
-BOUNCE_FACTOR=1
+BOUNCE_FACTOR=0.3
+BASE_SPEED=3
 
 class Ball(Turtle):
     def __init__(self) -> None:
@@ -13,6 +14,7 @@ class Ball(Turtle):
         self.speed=3
                 
     def first_launch(self,player):
+        self.speed=BASE_SPEED
         self.setheading(0)
         self.goto(0,random.randrange(-180,180))
         self.left(random.randrange(-45,45))
@@ -44,6 +46,7 @@ class Ball(Turtle):
             self.right( (attack_heading-180)*2 )
     
         self.left(180)
+        self.speed+=0.25
         
     def hit_the_wall(self):
         attack_heading=self.heading()
