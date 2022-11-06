@@ -27,7 +27,7 @@ screen.onkey(key="z", fun=paddle1.up)
 screen.onkey(key="s", fun=paddle1.down)
 
 game_is_on=True
-playing=1
+playing=2
 
 while game_is_on:
     screen.update()
@@ -35,12 +35,14 @@ while game_is_on:
     ball.move()
 
     targetPaddle= paddle2 if playing==1 else paddle1
-    for i, sq in enumerate(targetPaddle.paddle):
-        if ball.distance(sq)<=22:
-            hit_position = targetPaddle.get_center_ycor()-ball.ycor()
-            ball.send_back(hit_position)
-            playing = 2 if playing==1 else 1
     
+    if ball.xcor() < -BOARD_DIMENSIONS[0]/2+60 and ball.distance(paddle1.paddle)<50:
+        ball.send_back(0)
+    if ball.xcor() > BOARD_DIMENSIONS[0]/2-60 and ball.distance(paddle2.paddle)<50:
+        ball.send_back(0)
+
+    print(paddle1.paddle.position())
+
     if abs(ball.ycor())>BOARD_DIMENSIONS[1]/2-10:
         ball.hit_the_wall()
 
@@ -48,6 +50,5 @@ while game_is_on:
         score_board.score_up(playing)
         time.sleep(1)
         ball.first_launch(playing)
-
 
 screen.exitonclick()

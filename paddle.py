@@ -6,46 +6,30 @@ class Paddle():
     def __init__( self, board_dimensions, player ) -> None:
         self.player= -1 if player==1 else 1
         self.board_dimensions = board_dimensions
-        
-        self.start_positions=[]
-        self.init_start_position()
-
-        self.paddle=[]
+        self.paddle=Turtle()
         self.init_barre()
         
 
     def init_barre(self):
-        for sq in self.start_positions:
-            square=Turtle()
-            square.shape( "square" )
-            square.color( "white" )
-            square.penup()
-            square.goto( *sq )
-            self.paddle.append(square)
+        self.paddle.shape( "square" )
+        self.paddle.shapesize(stretch_wid=5, stretch_len=1)
+        self.paddle.color( "white" )
+        self.paddle.penup()
+        self.paddle.goto( self.player*(self.board_dimensions[0]/2-DISTANCE_BEHIND_PADDLE), 0 )
+        
 
-    def init_start_position(self):
-        y= [40,20,0,-20,-40]
-        for i in range(5):
-            x_coord = ( self.board_dimensions[0] / 2 - DISTANCE_BEHIND_PADDLE ) * self.player
-            print("x_coord : ", x_coord)
-            y_coord = y[i]
-            self.start_positions.append( [x_coord, y_coord] )
-        print("b")
-            
+    
+
+
     def up(self):
         y_max=self.board_dimensions[1]/2
-        if self.paddle[0].ycor() < y_max-20:
-            for sq in self.paddle:
-                sq.setheading(90)
-                sq.forward(20)
+        if self.paddle.ycor() < y_max-60:
+            self.paddle.goto(self.paddle.xcor(),self.paddle.ycor()+20)
+            
+
 
     def down(self):
         y_min=-self.board_dimensions[1]/2
-        if self.paddle[-1].ycor() > y_min+20:
-            for sq in self.paddle:
-                sq.setheading(270)
-                sq.forward(20)
+        if self.paddle.ycor() > y_min+60:
+            self.paddle.goto(self.paddle.xcor(),self.paddle.ycor()-20)
 
-
-    def get_center_ycor(self):
-        return self.paddle[2].ycor()
