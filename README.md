@@ -14,7 +14,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[<img align="center" height="370px" width="300px" alt="memoryGame-image" src="https://raw.githubusercontent.com/RomainC75/pong/master/screenshot/pong-screenshot.png"/>](https://github.com/RomainC75/)
+[<img align="center" height="600px" width="800px" alt="memoryGame-image" src="https://raw.githubusercontent.com/RomainC75/pong/master/screenshot/pong-screenshot.png"/>](https://github.com/RomainC75/)
 
 This a my personnal implementation of the Pong Game in Python.
 
