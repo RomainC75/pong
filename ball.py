@@ -26,9 +26,9 @@ class Ball(Turtle):
 
     def send_back(self,side_distance):
         bounce = BOUNCE_FACTOR*side_distance
-        print("bounce : ",bounce)
+        # print("bounce : ",bounce)
         attack_heading=self.heading()
-        print("attack heading : ", attack_heading)
+        # print("attack heading : ", attack_heading)
         if attack_heading<=90:
             self.left(bounce)    
             self.right(attack_heading*2 )
